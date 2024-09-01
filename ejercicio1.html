@@ -1,54 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Ejercicio 1</title>
+    <title>Formulario de Contacto</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
-
 <body>
-    <div>
-        <div style="width: 40%;margin: 0 auto">
-            <h2>
-                Escríbenos !!!
-            </h2>
-            <div class="resultado" style="color:green;font-style: italic">
+    <div class="container mt-5">
+        <h2>Escríbenos !!!</h2>
+        <div id="resultado" class="resultado" style="color:green;font-style: italic;"></div>
+        <form id="formulario">
+            <div class="form-group mb-4">
+                <label for="nombre">Nombre completo</label>
+                <input id="nombre" type="text" class="form-control">
+                <p id="errorNombre" class="errorNombre text-danger"></p>
             </div>
-            <form id="formulario">
-                <div>
-                    <div style="display: flex;flex-direction: column;">
-                        <label>
-                            Nombre completo
-                        </label>
-                        <input id="nombre" type="text">
-                        <p class="errorNombre" style="color:red;font-style: italic;"></p>
-                    </div>
-                    <div style="display: flex;flex-direction: column;">
-                        <label>
-                            Asunto
-                        </label>
-                        <input id="asunto" type="text">
-                        <p class="errorAsunto" style="color:red;font-style: italic;"></p>
-                    </div>
-                </div>
-                <div style="display: flex;flex-direction: column;">
-                    <label>
-                        Mensaje
-                    </label>
-                    <textarea id="mensaje"></textarea>
-                    <p class="errorMensaje" style="color:red;font-style: italic;"></p>
-                </div>
-                <div>
-                    <button id="botton" type="submit">
-                        Envíar mensaje
-                    </button>
-                </div>
-            </form>
-        </div>
+            <div class="form-group mb-4">
+                <label for="asunto">Asunto</label>
+                <input id="asunto" type="text" class="form-control">
+                <p id="errorAsunto" class="errorAsunto text-danger"></p>
+            </div>
+            <div class="form-group mb-4">
+                <label for="mensaje">Mensaje</label>
+                <textarea id="mensaje" class="form-control"></textarea>
+                <p id="errorMensaje" class="errorMensaje text-danger"></p>
+            </div>
+            <button id="boton" type="submit" class="btn btn-primary">Enviar mensaje</button>
+        </form>
     </div>
+
     <script>
-    // Escríbe aquí tu código
+        document.getElementById('formulario').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const nombre = document.getElementById('nombre').value.trim();
+            const asunto = document.getElementById('asunto').value.trim();
+            const mensaje = document.getElementById('mensaje').value.trim();
+
+            const errorNombre = document.getElementById('errorNombre');
+            const errorAsunto = document.getElementById('errorAsunto');
+            const errorMensaje = document.getElementById('errorMensaje');
+            const resultado = document.getElementById('resultado');
+
+            const regex = /^[a-zA-Z\s]+$/;
+
+            let valido = true;
+
+            // Validación del nombre
+            if (nombre === '') {
+                errorNombre.textContent = 'El nombre es requerido.';
+                valido = false;
+            } else if (!regex.test(nombre)) {
+                errorNombre.textContent = 'El nombre solo debe contener letras.';
+                valido = false;
+            } else {
+                errorNombre.textContent = '';
+            }
+
+            // Validación del asunto
+            if (asunto === '') {
+                errorAsunto.textContent = 'El asunto es requerido.';
+                valido = false;
+            } else if (!regex.test(asunto)) {
+                errorAsunto.textContent = 'El asunto solo debe contener letras.';
+                valido = false;
+            } else {
+                errorAsunto.textContent = '';
+            }
+
+            // Validación del mensaje
+            if (mensaje === '') {
+                errorMensaje.textContent = 'El mensaje es requerido.';
+                valido = false;
+            } else if (!regex.test(mensaje)) {
+                errorMensaje.textContent = 'El mensaje solo debe contener letras.';
+                valido = false;
+            } else {
+                errorMensaje.textContent = '';
+            }
+
+            if (valido) {
+                resultado.textContent = 'Formulario enviado con éxito.';
+                resultado.style.color = 'green';
+            } else {
+                resultado.textContent = 'Por favor, corrige los errores antes de enviar.';
+                resultado.style.color = 'red';
+            }
+        });
     </script>
 </body>
-
 </html>

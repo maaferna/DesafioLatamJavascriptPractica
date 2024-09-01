@@ -1,42 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Ejercicio 3</title>
+    <title>Calculadora</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
-
 <body>
-    <div>
-        <div>
-            <h2>
-                Resultado: <span class="resultado"></span>
-            </h2>
-            <div>
-                <div>
-                    <div>
-                        <label for="">Valor 1</label>
-                        <input id="valor1" type="text">
-                    </div>
-                    <div>
-                        <label for="">Valor 2</label>
-                        <input id="valor2" type="text">
-                    </div>
-                    <div style="display: flex">
-                        <button id="btn-sumar" type="button">
-                            Sumar
-                        </button>
-                        <button id="btn-restar" type="button">
-                            Restar
-                        </button>
-                    </div>
-                </div>
-            </div>
+    <div class="container mt-5">
+        <h2>Calculadora</h2>
+        <h3>Resultado: <span class="resultado">0</span></h3>
+        <div class="form-group">
+            <label for="valor1">Valor 1</label>
+            <input id="valor1" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="valor2">Valor 2</label>
+            <input id="valor2" type="text" class="form-control">
+        </div>
+        <div class="btn-group" role="group">
+            <button id="btn-sumar" type="button" class="btn btn-success">Sumar</button>
+            <button id="btn-restar" type="button" class="btn btn-danger">Restar</button>
         </div>
     </div>
+
     <script>
-    // Escríbe aquí tu código
+        document.getElementById('btn-sumar').addEventListener('click', function() {
+            const valor1 = parseFloat(document.getElementById('valor1').value);
+            const valor2 = parseFloat(document.getElementById('valor2').value);
+            const resultado = valor1 + valor2;
+            document.querySelector('.resultado').textContent = resultado;
+        });
+
+        document.getElementById('btn-restar').addEventListener('click', function() {
+            const valor1 = parseFloat(document.getElementById('valor1').value);
+            const valor2 = parseFloat(document.getElementById('valor2').value);
+            let resultado = valor1 - valor2;
+            if (resultado < 0) {
+                resultado = 0;
+            }
+            document.querySelector('.resultado').textContent = resultado;
+        });
     </script>
 </body>
-
 </html>
