@@ -1,0 +1,29 @@
+:root {
+    --color-red: #e53e3e;
+    --color-orange: #dd6b20;
+    --color-yellow: #faf089;
+    --color-green: #48bb78;
+    --color-teal: #81e6d9;
+    --color-pink: #d53f8c;
+
+    --button-height: 100px;
+
+    --box-height: 600px;
+}
+
+.btn-color {
+    width: 100%;
+    height: var(--button-height);
+}
+
+.btn-red { background-color: var(--color-red); }
+.btn-orange { background-color: var(--color-orange); }
+.btn-yellow { background-color: var(--color-yellow); }
+.btn-green { background-color: var(--color-green); }
+.btn-teal { background-color: var(--color-teal); }
+.btn-pink { background-color: var(--color-pink); }
+
+#caja {
+    width: 100%;
+    height: var(--box-height);
+}
